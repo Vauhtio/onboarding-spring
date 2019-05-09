@@ -1,10 +1,8 @@
 package com.vauhtio.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.vauhtio.bo.VauhtioData;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class VauhtioRestController {
@@ -15,7 +13,17 @@ public class VauhtioRestController {
     }
 
     @GetMapping("/getwithpath/{index}")
-    public String getData (@PathVariable String index) {
-        return "vauhtio data, index was " + index;
+    public String getDataWithUrlPath (@PathVariable String index) {
+        return "getDataWithUrlPath, index was " + index;
+    }
+
+    @GetMapping("/getwithparam")
+    public String getDataWithGetParam (@RequestParam String index) {
+        return "getDataWithGetParam, index was " + index;
+    }
+
+    @PostMapping("/postdata")
+    public String postData (@RequestBody VauhtioData vauhtioData) {
+        return vauhtioData.toString();
     }
 }
